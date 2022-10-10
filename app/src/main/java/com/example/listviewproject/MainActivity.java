@@ -8,8 +8,11 @@ import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+
+    String[] noms = {"Albert", "Edu", "Irene", "Sergio", "Gaizka", "Sergi", "Ernest", "Eric", "Alex"};
 
     // Model: Record (intents=puntuació, nom)
     class Record {
@@ -56,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
                 ((TextView) convertView.findViewById(R.id.intents)).setText(Integer.toString(getItem(pos).intents));
                 return convertView;
             }
-
         };
 
         // busquem la ListView i li endollem el ArrayAdapter
@@ -68,8 +70,11 @@ public class MainActivity extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (int i=0;i<500;i++) {
-                    records.add(new Record(100, "Anonymous"));
+
+                Random random = new Random();
+
+                for (int i=0;i<100;i++) {
+                    records.add(new Record(random.nextInt(100), noms[random.nextInt(noms.length)]));
                 }
                 // notificar l'adapter dels canvis al model
                 adapter.notifyDataSetChanged();
