@@ -80,5 +80,25 @@ public class MainActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
+
+
+        Button ordenarButton = findViewById(R.id.buttonOrdenar);
+        ordenarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                for(int i = 0; i < records.size(); i++){
+                    for(int j = 0; j < records.size() - 1; j++){
+                        if(records.get(j).intents > records.get(j + 1).intents){
+                            Record currentRecord = records.get(j);
+                            records.set(j, records.get(j + 1));
+                            records.set(j + 1, currentRecord);
+                        }
+                    }
+                }
+
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 }
